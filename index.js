@@ -118,12 +118,6 @@ function displayAcceptedForm(){
     immigrationName.innerText = state.selectedApplicant.name
     immigrationNameDiv.append(immigrationName)
 
-    /*
-    // CREATE IMMIGRATION ACCEPTED
-    let immigrationAccepted = document.createElement("div")
-    immigrationAccepted.className ="immigration-form"
-    actionSection.append(immigrationAccepted)
-    */
     // CREATE AN ACCEPTED HEADING
     let acceptedH1 = document.createElement("h1")
     acceptedH1.setAttribute("class","approved-heading approved-green")
