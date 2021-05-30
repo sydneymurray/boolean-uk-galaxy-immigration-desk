@@ -16,6 +16,7 @@ function displayMainPage(){
     })
 }
 
+// RETREIVE A LIST OF APPLICANTS FROM EXTERNAL DATABASE
 function retrieveApplicantsFromExternal(){
     return fetch("https://swapi.dev/api/people/")
         .then(function (promise) {
@@ -23,13 +24,12 @@ function retrieveApplicantsFromExternal(){
         })
         .then(function (people) {
             state.applicants = people
-            state.accepted = ["DUMMY"]
+            state.accepted = []
             return people
         })
 }
 
-
-
+// DISPLAY A LIST OF APPLICANTS
 function displayApplicantList(){
     let listSection = document.querySelector(".list-section")
     
@@ -51,6 +51,7 @@ function displayApplicantList(){
         displayListApplicant(applicant)        
 }
 
+// DISPLAY AN APPLICANT
 function displayListApplicant(applicant){
     let listSectionUL = document.querySelector(".applicant-list")
 
@@ -83,14 +84,15 @@ function displayListApplicant(applicant){
         displayApplicantInfo()
 
         // IF IMMIGRATION HAS ALREADY BEEN ACCEPTED THEN
-        // 'ACCEPTED FORM' ELSE 'IMMIGRATION FORM' 
-        if (state.accepted.indexOf(applicant.name) > 0)
+        // DISPLAY 'ACCEPTED FORM' ELSE DISPLAY 'IMMIGRATION FORM' 
+        if (state.accepted.indexOf(applicant.name) > -1)
             displayAcceptedForm()
         else
             displayImmigrationForm()
     })
 }
 
+// DISPLAY ACCEPTED FORM
 function displayAcceptedForm(){
     let actionSection = document.querySelector(".action-section")
     actionSection.innerHTML = ""
@@ -125,6 +127,7 @@ function displayAcceptedForm(){
     actionSection.append(acceptedH1)
 }
 
+// DISPLAY APPLICANT INFORMATION
 function displayApplicantInfo(){
     let infoSection = document.querySelector(".info-section")
     infoSection.innerHTML = ""
@@ -226,6 +229,7 @@ function displayApplicantInfo(){
     infoHomeWorldContainerDiv.append(applicantInfoHomeWorld)
 }
 
+// RETRIEVE USERS HOMEWORLD TO DISPLAY
 function retreiveHomeWorld(homeWorld,span){
     return fetch(homeWorld)
         .then(function (promise) {
@@ -236,6 +240,7 @@ function retreiveHomeWorld(homeWorld,span){
         })
 }
 
+// DISPLAY APPLICANT IMMIGRATION FORM
 function displayImmigrationForm(){
     let actionSection = document.querySelector(".action-section")
     actionSection.innerHTML = ""
